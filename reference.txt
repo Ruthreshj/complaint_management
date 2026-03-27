@@ -1,0 +1,46 @@
+User
+- id: Long
+- name: String
+- email: String
+- password: String
+- role: ENUM (USER, EMPLOYEE, MANAGER)
+- createdAt: LocalDateTime
+
+Complaint
+- id: Long
+- title: String
+- description: String
+- status: ENUM
+- priority: ENUM
+- createdBy: User
+- assignedTo: Employee (nullable)
+- assignedBy: Manager (nullable)
+- createdAt: LocalDateTime
+- updatedAt: LocalDateTime
+
+ResolutionLog
+- id: Long
+- complaint: Complaint
+- updatedBy: Employee
+- comment: String
+- status: ENUM
+- timestamp: LocalDateTime
+
+POST   /api/auth/register
+POST   /api/auth/login
+GET    /api/users/{id}
+
+POST   /api/complaints
+GET    /api/complaints/{id}
+GET    /api/complaints/my
+GET    /api/complaints
+
+PUT /api/manager/complaints/{id}/assign
+GET /api/manager/complaints
+GET /api/manager/employees
+
+GET  /api/employee/complaints
+PUT  /api/employee/complaints/{id}/status
+
+POST /api/employee/complaints/{id}/logs
+GET  /api/complaints/{id}/logs
